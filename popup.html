@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>Generateur de citations</title>
+  <style>
+      .popup {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          padding-top: 100px;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgb(0, 0, 0); /* Fallback color */
+          background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      }
+      .popup-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+      }
+      .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+          cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+<h3>Generateur de citations</h3>
+<button type="button">Afficher le popup</button>
+<!-- Popup -->
+<div class="popup">
+  <div class="popup-content">
+    <span class="close">x</span>
+    <p></p>
+    <button class='regenerate'>Générer encore</button>
+  </div>
+</div>
+</body>
+
+<script>
+
+  /**
+   * Select random quote in quotes array
+   */
+  function generateQuotes() {
+    const quotes = [
+      'Le pire moyen d\'être heureux, ne dépend que de vous.',
+      'Le meilleur moyen de vivre, n\'apporte rien.',
+      'La pire des manières d\'aller au bout de ses rêves, ne dépend que de vous.',
+      'La meilleure des façons d\'aller au bout de ses rêves, c\'est simple, il n\'y en a pas.',
+      'L\'hacharnement de vivre, n\'apporte rien.',
+      'Le miracle des hommes, c\'est d\'avoir obtenu d\'une fonction un plaisir raffiné, et d\'avoir créé un art d\'aimer à son tour générateur de l\'Amour dans l\'Art.',
+      'Je commence à comprendre que la souffrance nous apporte aussi la force et la sagesse, et fait tout autant partie de la vie que le bonheur.',
+      'Homme, ne montre pas trop haut et ne tire gloire de rien d\'autre :\n' +
+      'La plus belle sagesse c\'est de ne pas être sage.',
+      'Je crois que la sagesse vient avec l\'âge, la vie et la douleur. Et le fait de savoir ce qui compte.',
+      'Vous savez, je n\'ai pas peur de la fin. J\'ai eu une vie si heureuse...',
+      'La survie est nécessaire à la vie mais une vie réduite à la survie n\'est plus la vie.'
+    ]
+
+    let popup = document.querySelector('.popup')
+    popup.style.display = 'block'
+    let p = document.querySelector('p')
+    p.textContent = quotes[Math.floor(Math.random() * quotes.length)]
+
+    let button = document.querySelector('.regenerate')
+    button.addEventListener('click', generateQuotes)
+  }
+
+  /**
+   * Close popup
+   */
+  function close() {
+    let popup = document.querySelector('.popup')
+    popup.style.display = 'none'
+  }
+
+  /**
+   * Events
+   */
+
+  let button = document.querySelector('button')
+  button.addEventListener('click', generateQuotes)
+
+  let span = document.getElementsByClassName('close')[0]
+  span.addEventListener('click', close)
+
+</script>
+
+</html>

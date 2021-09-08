@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>Generateur de mot de passe</title>
+</head>
+<body>
+<h3>Convertisseur celsius <=> farenheit </h3>
+<form>
+  <select name="type">
+    <option value="c" selected >Celsius à Farenheit</option>
+    <option value="f" >Farenheit à Celsius</option>
+  </select>
+  <input value="26" name="temperature" id="temperature" />
+  <button id="btn" >Convertir</button>
+</form>
+<div class="convertion" ></div>
+</body>
+
+<script>
+  /**
+   * Convert celsius to farenheit
+   *
+   * @param celsius
+   * @returns {string}
+   */
+  function celsiusToFahrenheit(celsius)
+  {
+    const fahrenheit = celsius * 9 / 5 + 32;
+    return celsius + '\xB0C équivaut à ' + fahrenheit.toFixed(2) + ' \xB0F.';
+  }
+
+  /**
+   * Convert farenheit to celsius
+   *
+   * @param fahrenheit
+   * @returns {string}
+   */
+  function fahrenheitToCelsius(fahrenheit)
+  {
+    const celsius = (fahrenheit - 32) * 5 / 9;
+    return fahrenheit + '\xB0F is ' + celsius.toFixed(2) + '\xB0C.';
+  }
+
+  /**
+   * Document & Events
+   */
+
+  const form = document.querySelector('form');
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  document.querySelector('form').addEventListener('submit', (e) => {
+    const data = Object.fromEntries(new FormData(e.target).entries());
+
+    let txt = document.querySelector('.convertion')
+    txt.style.marginTop = "10px"
+
+    if (isNaN(data.temperature)) { // check if value is a number
+      txt.textContent = 'Veuillez renseigner un nombre !'
+      txt.style.backgroundColor = "red"
+      e.preventDefault();
+      return;
+    }
+
+    if (data.type === 'c') txt.textContent = celsiusToFahrenheit(data.temperature)
+    if (data.type === 'f') txt.textContent = fahrenheitToCelsius(data.temperature)
+    txt.style.color = "green"
+    e.preventDefault();
+  });
+
+</script>
+
+</html>
