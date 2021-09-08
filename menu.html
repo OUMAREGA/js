@@ -19,11 +19,13 @@
 </body>
 
 <script>
-
+  /**
+   * Show menu
+   */
   function showMenu() {
 
     let ul = document.createElement('ul');
-    const plats = ['Tacos', 'Pizzas', 'Grecque', 'Tenders', 'Nuggets', 'Nems']
+    const plats = ['Tacos', 'Pizzas', 'Grecque', 'Tenders', 'Nuggets', 'Nems', 'Pâtes']
     plats.forEach(plat => {
       let li = document.createElement('li');
       li.textContent = plat
@@ -36,7 +38,9 @@
     }, 5000);
   }
 
-
+  /**
+   * Event
+   */
 
   let menu = document.querySelector('.menu')
   menu.addEventListener('click', showMenu)
